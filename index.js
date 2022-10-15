@@ -34,6 +34,7 @@ async function run() {
       const result = await taskCollection.find({ email: email }).toArray();
       res.json(result);
     });
+    
     app.post("/completedTask/:id", async (req, res) => {
       const id = req.params.id;
       const result = await taskCollection.findOne({ _id: ObjectId(id) });
