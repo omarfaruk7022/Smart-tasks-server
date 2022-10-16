@@ -34,10 +34,10 @@ async function run() {
       const result = await taskCollection.find({ email: email }).toArray();
       res.json(result);
     });
-    
+
     app.post("/completedTask/:id", async (req, res) => {
       const id = req.params.id;
-      const result = await taskCollection.findOne({ _id: ObjectId(id) });
+      const result = await taskCollection.findOne({ _id: ObjectId(id) }) ;
       const result2 = await completedCollection.insertOne(result);
       const result3 = await taskCollection.deleteOne({ _id: ObjectId(id) });
       res.json(result3);
@@ -52,6 +52,7 @@ async function run() {
         const result = await completedCollection.deleteOne({ _id: ObjectId(id) });
         res.json(result);
     })
+   
   } finally {
   }
 }
