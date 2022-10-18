@@ -52,6 +52,15 @@ async function run() {
         const result = await completedCollection.deleteOne({ _id: ObjectId(id) });
         res.json(result);
     })
+    app.patch("/addTask/:id", async (req, res) => {
+      const id = req.params.id;
+      const task = req.body;
+      const result = await taskCollection.updateOne(
+        { _id: ObjectId(id) },
+        { $set: task }
+      );
+      res.json(result);
+    })
    
   } finally {
   }
